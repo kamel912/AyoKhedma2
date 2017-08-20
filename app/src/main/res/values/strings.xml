@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">ايو خدمة</string>
+    <string name="category">Category</string>
+
+    <string name="menu_logo">menu_logo</string>
+    <string name="main_logo">main_logo</string>
+
+    <string name="search">Search</string>
+    <string name="rate">Rate</string>
+    <string name="address">Address</string>
+    <string name="region">Region</string>
+    <string name="name">Name</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="usre_name">Usre Name</string>
+    <string name="count">Count</string>
+
+
+    <string name="username">اسم المستخدم</string>
+
+    <string name="name_user">الاسم</string>
+
+
+    <string name="password">كلمة المرور</string>
+
+    <string name="email">البريد الإلكتروني</string>
+
+    <string name="login">تسجيل الدخول</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="registration_instruction">I do not have a username and password details. Click the button below to register</string>
+
+    <string name="register">مستخدم جديد</string>
+
+    <string name="login_button">هل تملك حساب؟ تسجيل الدخول</string>
+
+    <string name="register_button">التسجيل</string>
+
+    <string name="title_activity_register">RegisterActivity</string>
+
+    <string name="welcome">WELCOME</string>
+
+    <string name="is_login">You have been successfully login </string>
+
+    <string name="sign_up">Sign Up Now</string>
+    <string name="addSubject">أضف عنوان</string>
+    <string name="add">أضف</string>
+    <string name="addComment">أضف تعليق</string>
+    <string name="cancel">إلغاء</string>
+
+
+    <string name="facebook_app_id">117285105566153</string>
+</resources>

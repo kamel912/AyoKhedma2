@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    android:padding="8dp"
+    tools:context="com.ayokhedma.ayokhedma.fragments.DescriptionFragment">
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ImageView
+
+        android:id="@+id/obj_img"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        />
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/rating"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/address"
+        android:textColor="@android:color/black" />
+    <TextView
+        android:id="@+id/worktime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/description"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/weekend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/worktime"
+        android:textColor="@android:color/black" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/phone_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/weekend"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+   <RatingBar
+       android:id="@+id/rating"
+       android:isIndicator="true"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:numStars="5"
+       android:rating="0"
+       android:layout_below="@+id/obj_img"
+       android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</RelativeLayout>
