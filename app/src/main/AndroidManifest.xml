@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".ui.SearchableActivity" />
+
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +22,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.CategoryActivity" />
-        <activity android:name=".ui.ObjectActivity"></activity>
+        <activity
+            android:name=".ui.CategoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.ObjectActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.SearchableActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity android:name=".ui.CategoriesActivity"></activity>
     </application>
 
 </manifest>

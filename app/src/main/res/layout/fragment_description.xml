@@ -61,6 +61,7 @@
 
    <RatingBar
        android:id="@+id/rating"
+       style="@style/Base.Widget.AppCompat.RatingBar.Indicator"
        android:isIndicator="true"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"

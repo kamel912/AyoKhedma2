@@ -4,8 +4,8 @@ import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -29,35 +29,30 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class CategoriesActivity extends AppCompatActivity {
     List<CategoryModel> categories = new ArrayList<>();
     RecyclerView recyclerView;
     GridLayoutManager layoutManager;
     private CategoryAdapter adapter;
     ApiInterface apiInterface;
-    private String image_path = "http://www.ayokhedma.com/app/images/mainlogo.png";
-    private ImageView logo;
     SearchView searchView;
     SharedPreferences sharedPreferences;
     ProgressDialog progress;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_categories);
 
         //ToolBar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.categoris_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //Shared preferences
-        sharedPreferences = getSharedPreferences("userprefences",Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("userprefences", Context.MODE_PRIVATE);
 
         //Define progress dialog options
         progress = new ProgressDialog(this);
@@ -65,12 +60,8 @@ public class MainActivity extends AppCompatActivity {
         progress.setMax(100);
         progress.show();
 
-        //main activity logo
-        logo = (ImageView) findViewById(R.id.imageView);
-        Glide.with(this).load(image_path).into(logo);
-
         //recycler of categories
-        layoutManager  = new GridLayoutManager(MainActivity.this, 3);
+        layoutManager  = new GridLayoutManager(CategoriesActivity.this, 3);
         recyclerView = (RecyclerView) findViewById(R.id.main_recycler);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
@@ -82,16 +73,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
                 categories = response.body();
-                adapter = new CategoryAdapter(MainActivity.this, categories);
+                adapter = new CategoryAdapter(CategoriesActivity.this, categories);
                 recyclerView.setAdapter(adapter);
                 progress.hide();
             }
             @Override
             public void onFailure(Call<List<CategoryModel>> call, Throwable throwable) {
-                Toast.makeText(MainActivity.this, "تعذر الاتصال بالخادم", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CategoriesActivity.this, "تعذر الاتصال بالخادم", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -121,5 +113,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
