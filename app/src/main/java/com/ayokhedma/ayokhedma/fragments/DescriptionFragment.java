@@ -142,9 +142,17 @@ public class DescriptionFragment extends Fragment{
                     weekend.setText("يوم العطلة : " + week);
                 }
                 phones = object.getPhone();
-                phoneAdapter = new PhoneAdapter(getActivity(),phones);
-                recyclerView.setAdapter(phoneAdapter);
+                final String phone = phones.get(0);
+                if (phone == null){
+                    recyclerView.setVisibility(View.GONE);
+                }else {
+                    phoneAdapter = new PhoneAdapter(getActivity(), phones);
+                    recyclerView.setAdapter(phoneAdapter);
+                }
+
+                //Hide the progress dialog
                 progress.hide();
+
             }
 
             @Override

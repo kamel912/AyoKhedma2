@@ -1,5 +1,6 @@
 package com.ayokhedma.ayokhedma.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -61,16 +62,16 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.MyViewHolder
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView phone;
-
+        private final Context context;
         public MyViewHolder(final View itemView) {
             super(itemView);
-            final Context context = itemView.getContext();
+            context = itemView.getContext();
             itemView.setClickable(true);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     String phone = "tel:" + itemView.getTag().toString().trim();
-                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse(phone));
                     context.startActivity(intent);
                 }

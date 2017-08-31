@@ -22,7 +22,7 @@ public interface ApiInterface {
     @POST("category.php")
     Call<List<CategoryModel>> getMainCategories(@Field("limit") String limit);
 
-    @GET("categoty.php")
+    @POST("category.php")
     Call<List<CategoryModel>> getAllCategories();
 
     @FormUrlEncoded

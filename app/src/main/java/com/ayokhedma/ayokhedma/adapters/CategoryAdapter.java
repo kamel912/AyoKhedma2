@@ -1,5 +1,6 @@
 package com.ayokhedma.ayokhedma.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -81,6 +82,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
                     bundle.putString("name", catName);
                     intent.putExtras(bundle);
                     context.startActivity(intent);
+                    ((Activity)context).finish();
 
                 }
             });

@@ -62,13 +62,13 @@ public class CategoriesActivity extends AppCompatActivity {
 
         //recycler of categories
         layoutManager  = new GridLayoutManager(CategoriesActivity.this, 3);
-        recyclerView = (RecyclerView) findViewById(R.id.main_recycler);
+        recyclerView = (RecyclerView) findViewById(R.id.categories_recycler);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
         //connect to get data
         apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<List<CategoryModel>> call = apiInterface.getMainCategories("6");
+        Call<List<CategoryModel>> call = apiInterface.getAllCategories();
         call.enqueue(new Callback<List<CategoryModel>>() {
             @Override
             public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {

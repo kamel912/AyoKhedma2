@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 categories = response.body();
                 adapter = new CategoryAdapter(MainActivity.this, categories);
                 recyclerView.setAdapter(adapter);
-                progress.hide();
+                progress.dismiss();
             }
             @Override
             public void onFailure(Call<List<CategoryModel>> call, Throwable throwable) {
