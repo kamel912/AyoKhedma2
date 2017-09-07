@@ -10,6 +10,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -75,11 +76,12 @@ public class CategoriesActivity extends AppCompatActivity {
                 categories = response.body();
                 adapter = new CategoryAdapter(CategoriesActivity.this, categories);
                 recyclerView.setAdapter(adapter);
-                progress.hide();
+                progress.dismiss();
             }
             @Override
-            public void onFailure(Call<List<CategoryModel>> call, Throwable throwable) {
+            public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
                 Toast.makeText(CategoriesActivity.this, "تعذر الاتصال بالخادم", Toast.LENGTH_SHORT).show();
+                Log.d("message",t.getMessage());
             }
         });
     }

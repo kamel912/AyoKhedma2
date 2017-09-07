@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.ayokhedma.ayokhedma.R;
@@ -88,6 +89,7 @@ public class SearchableActivity extends AppCompatActivity  {
                 @Override
                 public void onFailure(Call<List<ObjectModel>> call, Throwable t) {
                     Toast.makeText(SearchableActivity.this, "تعذر الاتصال بالخادم", Toast.LENGTH_SHORT).show();
+                    Log.d("message",t.getMessage());
                 }
             });
         }

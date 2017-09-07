@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,7 +107,7 @@ public class DescriptionFragment extends Fragment{
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sharedPreferences = getActivity().getSharedPreferences("userprefences", Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences("userPreferences", Context.MODE_PRIVATE);
 
         objectActivity = (ObjectActivity) getActivity();
         id = objectActivity.getIntent().getStringExtra("id");
@@ -130,16 +131,26 @@ public class DescriptionFragment extends Fragment{
                 ratingBar.setRating(object.getRate());
                 address.setText("العنوان : شارع " + object.getStreet() + " " + object.getBeside());
                 description.setText("الوصف : " + object.getDescription());
-                if(start2.equals("0:00") && end2.equals("0:00")){
-                    work = "أوقات العمل : من " + start1 + " إلى " + end1;
-                    worktime.setText(work);
-                }else {
-                    work =  "أوقات العمل : " + "\n" + "الفترة الأولى : من " +start1 + " إلى " + end1 + "\n" +
-                            " الفترة الثانية : من  " + start2 + " إلى " + end2;
-                    worktime.setText(work);
-                }
                 if (!week.equals("")){
-                    weekend.setText("يوم العطلة : " + week);
+                    String weekend = " كل الأيام عدا  يوم " + week;
+                    if(start2.equals("0:00") && end2.equals("0:00")){
+                        work = "أوقات العمل : من " + start1 + " إلى " + end1 + "\n" + weekend;
+                    }else {
+                        work =  "أوقات العمل : " + "\n" + "الفترة الأولى : من " +start1 + " إلى " + end1 + "\n" +
+                            " الفترة الثانية : من  " + start2 + " إلى " + end2 + "\n" + weekend;
+                }
+
+                    worktime.setText(work);
+
+                }else{
+                    if(start2.equals("0:00") && end2.equals("0:00")){
+                        work = "أوقات العمل : من " + start1 + " إلى " + end1;
+                    }else {
+                        work =  "أوقات العمل : " + "\n" + "الفترة الأولى : من " +start1 + " إلى " + end1 + "\n" +
+                                " الفترة الثانية : من  " + start2 + " إلى " + end2;
+                    }
+
+                    worktime.setText(work);
                 }
                 phones = object.getPhone();
                 final String phone = phones.get(0);
@@ -158,18 +169,12 @@ public class DescriptionFragment extends Fragment{
             @Override
             public void onFailure(Call<ObjectModel> call, Throwable t) {
                 Toast.makeText(getActivity(), "تعذر الاتصال بالخادم", Toast.LENGTH_SHORT).show();
-
+                Log.d("message",t.getMessage());
             }
         });
     }
 
-    private void getRate(){
 
-    }
-
-    private void setRate(float rate){
-
-    }
 
     private String trimming(String string){
         List<Character> chars = new ArrayList<>();

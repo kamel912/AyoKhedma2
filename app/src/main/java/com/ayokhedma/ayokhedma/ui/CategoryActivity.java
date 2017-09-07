@@ -12,6 +12,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -123,7 +124,7 @@ public class CategoryActivity extends AppCompatActivity {
                         listCall.enqueue(new Callback<List<ObjectModel>>() {
                             @Override
                             public void onResponse(Call<List<ObjectModel>> call, Response<List<ObjectModel>> response) {
-                                if (response.equals("null")) {
+                                if (response == null) {
                                     Toast.makeText(CategoryActivity.this,"لا توجد " + catname + " في هذه المنطقة",Toast.LENGTH_SHORT).show();
                                     progress.hide();
                                 }else {
@@ -137,6 +138,7 @@ public class CategoryActivity extends AppCompatActivity {
                             @Override
                             public void onFailure(Call<List<ObjectModel>> call, Throwable t) {
                                 Toast.makeText(CategoryActivity.this, "تعذر الاتصال بالخادم", Toast.LENGTH_SHORT).show();
+                                Log.d("message",t.getMessage());
                             }
                         });
                     }
@@ -151,6 +153,7 @@ public class CategoryActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<RegionModel>> call, Throwable t) {
                 Toast.makeText(CategoryActivity.this, "تعذر الاتصال بالخادم", Toast.LENGTH_SHORT).show();
+                Log.d("message",t.getMessage());
             }
         });
     }
