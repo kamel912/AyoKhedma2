@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/obj_reg"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/obj_name"
             android:layout_toLeftOf="@+id/obj_Img"
@@ -38,6 +38,17 @@
             android:text="@string/region"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
+        <TextView
+            android:id="@+id/obj_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:text="@string/status"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_below="@+id/obj_name"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
 
         <TextView

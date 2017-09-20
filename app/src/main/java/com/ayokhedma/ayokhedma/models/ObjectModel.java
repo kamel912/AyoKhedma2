@@ -7,9 +7,30 @@ import java.util.List;
  */
 
 public class ObjectModel {
-    private String id,category,catId,name,region,street,beside,description,start1,end1,start2,end2,weekend,color, count;
+    private String id;
+    private String category;
+    private String catId;
+    private String name;
+    private String region;
+    private String street;
+    private String beside;
+    private String description;
+    private String start1;
+    private String end1;
+    private String start2;
+    private String end2;
+    private String start3;
+    private String end3;
+
+
+
+    private String weekend;
+    private String color;
+    private String count;
     private float rate;
-    private List<String> phone;
+    private List<String> phones;
+    private List<CommentModel> comments;
+
 
     public String getId() {
         return id;
@@ -63,6 +84,14 @@ public class ObjectModel {
         return end2;
     }
 
+    public String getStart3() {
+        return start3;
+    }
+
+    public String getEnd3() {
+        return end3;
+    }
+
     public String getWeekend() {
         return weekend;
     }
@@ -71,11 +100,35 @@ public class ObjectModel {
         return color;
     }
 
-    public List<String> getPhone() {
-        return phone;
+    public List<String> getPhones() {
+        return phones;
     }
 
     public String getCount() {
         return count;
+    }
+
+    public List<CommentModel> getComments() {
+        return comments;
+    }
+
+
+
+    public class CommentModel {
+        private String  name,subject,commentBody;
+
+        public String getName() {
+            return name;
+        }
+
+        public String getSubject() {
+            return subject;
+        }
+
+        public String getcommentBody() {
+            return commentBody;
+        }
+
+
     }
 }

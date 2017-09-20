@@ -1,6 +1,5 @@
 package com.ayokhedma.ayokhedma.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,14 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.ayokhedma.ayokhedma.R;
-import com.ayokhedma.ayokhedma.models.CommentModel;
 import com.ayokhedma.ayokhedma.models.ObjectModel;
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +23,7 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.MyViewHolder
 
     private Context context;
     ObjectModel object = new ObjectModel();
-    List<String> phones = object.getPhone();
+    List<String> phones = object.getPhones();
     String link = "http://ayokhedma.com/app/images/phone/";
 
 
@@ -83,15 +79,11 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.MyViewHolder
 
 
     private String getCarrier(String string){
-        List<Character> chars = new ArrayList<>();
         StringBuilder builder = new StringBuilder();
         String phone,carrier = "";
-        for (int i = 0; i<3;i++){
-            char c = string.charAt(i);
-            chars.add(c);
-        }
-        for (int i = 0 ; i < chars.size(); i++){
-            builder.append(chars.get(i));
+
+        for (int i = 0 ; i < 3; i++){
+            builder.append(string.charAt(i));
         }
         phone = builder.toString();
         switch (phone){

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.ayokhedma.ayokhedma.R;
-import com.ayokhedma.ayokhedma.models.CommentModel;
+import com.ayokhedma.ayokhedma.models.ObjectModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +20,12 @@ import java.util.List;
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHolder> {
 
     private Context context;
-    List<CommentModel> comments = new ArrayList<>();
+    ObjectModel object = new ObjectModel();
+    List<ObjectModel.CommentModel> comments = object.getComments();
 
 
 
-    public CommentAdapter(Context context, List<CommentModel> comments) {
+    public CommentAdapter(Context context, List<ObjectModel.CommentModel> comments) {
         this.context = context;
         this.comments = comments;
     }
@@ -38,7 +39,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        CommentModel comment = comments.get(position);
+        ObjectModel.CommentModel comment = comments.get(position);
         holder.name.setText(comment.getName());
         holder.commentBody.setText(comment.getcommentBody());
         holder.subject.setText(comment.getSubject());

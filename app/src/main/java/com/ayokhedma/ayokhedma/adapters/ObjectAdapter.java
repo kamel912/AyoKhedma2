@@ -17,7 +17,10 @@ import com.ayokhedma.ayokhedma.models.ObjectModel;
 import com.ayokhedma.ayokhedma.ui.ObjectActivity;
 import com.bumptech.glide.Glide;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,6 +60,12 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
         holder.address.setText("شارع " + object.getStreet() + " " + object.getBeside());
         holder.rate.setText(Float.toString(object.getRate()));
         holder.rating.setRating(object.getRate());
+        try {
+            holder.status.setText(getStatus(object));
+            holder.status.setBackgroundResource(getBackground(getStatus(object)));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String path = image_path + object.getId() + ".png";
 
         Glide.with(context).load(path).error(R.drawable.defaulty).transform(new CircleTransform(context)).into(holder.obj_pic);
@@ -73,7 +82,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name,region,address,rate,count;
+        TextView name,region,address,rate,count,status;
         ImageView obj_pic;
         RatingBar rating;
         private final Context context;
@@ -108,6 +117,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
             name = (TextView) itemView.findViewById(R.id.obj_name);
             rate = (TextView) itemView.findViewById(R.id.obj_rate);
             count = (TextView) itemView.findViewById(R.id.rate_count);
+            status = (TextView) itemView.findViewById(R.id.obj_status);
             region = (TextView) itemView.findViewById(R.id.obj_reg);
             address = (TextView) itemView.findViewById(R.id.obj_add);
             obj_pic = (ImageView) itemView.findViewById(R.id.obj_Img);
@@ -116,6 +126,47 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.MyViewHold
         }
     }
 
+    String getStatus(ObjectModel object) throws ParseException {
+        String status      = null;
+        Date start1        = getDate(object.getStart1());
+        Date end1          = getDate(object.getEnd1());
+        Date start2        = getDate(object.getStart2());
+        Date end2          = getDate(object.getEnd2());
+        Date start3        = getDate(object.getStart3());
+        Date end3          = getDate(object.getEnd3());
+        String currentDay  = new SimpleDateFormat("EEEE").format(new Date());
+        Date currentTime   = getDate(new SimpleDateFormat("kk:mm:ss").format(new Date()));
+        if(!currentDay.equals(object.getWeekend())){
+            if((currentTime.before(end1)&&currentTime.after(start1)) ||
+                    (currentTime.after(start2) && currentTime.before(end2)) ||
+                    (currentTime.after(start3) && currentTime.before(end3)))
+            {
+            status = "open";
+            }else{
+                status = "close";
+            }
 
+        }else{
+            status = "close";
+        }
+
+
+
+        return status;
+    }
+    Date getDate(String time) throws ParseException {
+        Date date = new SimpleDateFormat("kk:mm:ss").parse(time);
+        return date;
+    }
+
+    int getBackground(String status){
+        int resource;
+        if(status.equals("open")){
+            resource = R.drawable.open_round_corner;
+        }else{
+            resource = R.drawable.close_round_corner;
+        }
+        return resource;
+    }
 
 }

@@ -23,9 +23,7 @@ import com.ayokhedma.ayokhedma.adapters.PhoneAdapter;
 import com.ayokhedma.ayokhedma.connection.ApiClient;
 import com.ayokhedma.ayokhedma.connection.ApiInterface;
 import com.ayokhedma.ayokhedma.models.ObjectModel;
-import com.ayokhedma.ayokhedma.models.RateModel;
 import com.ayokhedma.ayokhedma.models.UserModel;
-import com.ayokhedma.ayokhedma.ui.MainActivity;
 import com.ayokhedma.ayokhedma.ui.ObjectActivity;
 import com.bumptech.glide.Glide;
 
@@ -35,7 +33,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +47,6 @@ public class DescriptionFragment extends Fragment{
     SharedPreferences sharedPreferences;
     UserModel user;
     String id;
-    RateModel rateModel;
     ImageView obj_pic;
     private String objimage_path = "http://www.fatmanoha.com/ayokhedma/images/object/";
     List<String> phones = new ArrayList<>();
@@ -152,7 +148,7 @@ public class DescriptionFragment extends Fragment{
 
                     worktime.setText(work);
                 }
-                phones = object.getPhone();
+                phones = object.getPhones();
                 final String phone = phones.get(0);
                 if (phone == null){
                     recyclerView.setVisibility(View.GONE);
@@ -177,21 +173,17 @@ public class DescriptionFragment extends Fragment{
 
 
     private String trimming(String string){
-        List<Character> chars = new ArrayList<>();
         StringBuilder builder = new StringBuilder();
         String time;
         int j;
-        for (int i = 0; i<5;i++){
-            char c = string.charAt(i);
-            chars.add(c);
-        }
+
         if(string.charAt(0) == '0'){
             j = 1;
         }else{
             j = 0;
         }
-        for (int i = j ; i < chars.size(); i++){
-            builder.append(chars.get(i));
+        for (int i = j ; i <5; i++){
+            builder.append(string.charAt(i));
         }
         time = builder.toString();
         return  time;

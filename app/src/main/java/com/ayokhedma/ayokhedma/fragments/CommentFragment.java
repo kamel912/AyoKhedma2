@@ -18,20 +18,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ayokhedma.ayokhedma.R;
 import com.ayokhedma.ayokhedma.adapters.CommentAdapter;
-import com.ayokhedma.ayokhedma.models.CommentModel;
+import com.ayokhedma.ayokhedma.models.ObjectModel;
 import com.ayokhedma.ayokhedma.models.UserModel;
 import com.ayokhedma.ayokhedma.ui.ObjectActivity;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,11 +39,11 @@ public class CommentFragment extends Fragment{
     private Gson gson;
     private RecyclerView recyclerView;
     private GridLayoutManager layoutManager;
-    private List<CommentModel> comments = new ArrayList<>();
+    private List<ObjectModel.CommentModel> comments = new ArrayList<>();
     private CommentAdapter adapter;
     private ObjectActivity objectActivity;
     Button add_comment_text,add,cancel;
-    CommentModel comment;
+    ObjectModel.CommentModel comment;
     SharedPreferences sharedPreferences;
     UserModel user;
     TextView comment_count;
