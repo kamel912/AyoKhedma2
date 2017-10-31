@@ -80,13 +80,13 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.MyViewHolder
 
     private String getCarrier(String string){
         StringBuilder builder = new StringBuilder();
-        String phone,carrier = "";
+        String prefix,carrier = "";
 
         for (int i = 0 ; i < 3; i++){
             builder.append(string.charAt(i));
         }
-        phone = builder.toString();
-        switch (phone){
+        prefix = builder.toString();
+        switch (prefix){
             case "010" :
                 carrier = "vodafone";
                 break;

@@ -43,4 +43,8 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("search.php")
     Call<List<ObjectModel>> search(@Field("search") String search);
+
+    @FormUrlEncoded
+    @POST("comment.php")
+    Call<List<ObjectModel.CommentModel>> getComments(@Field("objid") String objid);
 }

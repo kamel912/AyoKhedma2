@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -74,8 +75,13 @@ public class CategoriesActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
                 categories = response.body();
-                adapter = new CategoryAdapter(CategoriesActivity.this, categories);
-                recyclerView.setAdapter(adapter);
+                if(categories != null) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    adapter = new CategoryAdapter(CategoriesActivity.this, categories);
+                    recyclerView.setAdapter(adapter);
+                }else{
+                    recyclerView.setVisibility(View.GONE);
+                }
                 progress.dismiss();
             }
             @Override

@@ -21,6 +21,8 @@ import android.widget.TextView;
 
 import com.ayokhedma.ayokhedma.R;
 import com.ayokhedma.ayokhedma.adapters.CommentAdapter;
+import com.ayokhedma.ayokhedma.connection.ApiClient;
+import com.ayokhedma.ayokhedma.connection.ApiInterface;
 import com.ayokhedma.ayokhedma.models.ObjectModel;
 import com.ayokhedma.ayokhedma.models.UserModel;
 import com.ayokhedma.ayokhedma.ui.ObjectActivity;
@@ -28,6 +30,10 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,6 +56,7 @@ public class CommentFragment extends Fragment{
     RelativeLayout comments_parent,add_comment_parent;
     EditText subject_field,commentBody_field;
     ProgressDialog progress;
+    ApiInterface apiInterface;
 
 
     public CommentFragment() {
@@ -115,13 +122,37 @@ public class CommentFragment extends Fragment{
 
         objectActivity = (ObjectActivity) getActivity();
         id = objectActivity.getIntent().getStringExtra("id");
+        apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
+        getData(id);
 
 
-        link = "http://www.fatmanoha.com/ayokhedma/comment.php?objid=" + id;
-        getData();
     }
-    private void getData(){
 
+
+
+    private void getData(String objid){
+        apiInterface.getComments(objid).enqueue(new Callback<List<ObjectModel.CommentModel>>() {
+            @Override
+            public void onResponse(Call<List<ObjectModel.CommentModel>> call, Response<List<ObjectModel.CommentModel>> response) {
+                comments = response.body();
+                if (comments != null) {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    adapter = new CommentAdapter(getActivity(), comments);
+                    recyclerView.setAdapter(adapter);
+                    count = String.valueOf(comments.size());
+                    comment_count.setText(commentCount(count));
+                }else {
+                    recyclerView.setVisibility(View.GONE);
+                    comment_count.setText("لا يوجد تعليقات");
+                }
+                progress.hide();
+            }
+
+            @Override
+            public void onFailure(Call<List<ObjectModel.CommentModel>> call, Throwable t) {
+
+            }
+        });
     }
 
 

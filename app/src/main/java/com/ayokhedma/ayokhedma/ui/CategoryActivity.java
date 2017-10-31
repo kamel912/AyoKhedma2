@@ -124,11 +124,13 @@ public class CategoryActivity extends AppCompatActivity {
                         listCall.enqueue(new Callback<List<ObjectModel>>() {
                             @Override
                             public void onResponse(Call<List<ObjectModel>> call, Response<List<ObjectModel>> response) {
-                                if (response == null) {
+                                objects = response.body();
+                                if (objects == null) {
                                     Toast.makeText(CategoryActivity.this,"لا توجد " + catname + " في هذه المنطقة",Toast.LENGTH_SHORT).show();
                                     progress.hide();
+                                    recyclerView.setVisibility(View.GONE);
                                 }else {
-                                    objects = response.body();
+                                    recyclerView.setVisibility(View.VISIBLE);
                                     adapter = new ObjectAdapter(CategoryActivity.this, objects);
                                     recyclerView.setAdapter(adapter);
                                     progress.hide();

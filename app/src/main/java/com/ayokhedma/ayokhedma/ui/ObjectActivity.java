@@ -54,7 +54,7 @@ public class ObjectActivity extends AppCompatActivity {
         pageAdapter = new FragmentPageAdapter(getSupportFragmentManager());
         pageAdapter.addFragments(new DescriptionFragment(), "معلومات");
        // pageAdapter.addFragments(new PhoneFragment(), "الهاتف");
-      //  pageAdapter.addFragments(new CommentFragment(), "التعليقات");
+        pageAdapter.addFragments(new CommentFragment(), "التعليقات");
         pager.setAdapter(pageAdapter);
         tabLayout.setupWithViewPager(pager);
         pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -71,9 +71,9 @@ public class ObjectActivity extends AppCompatActivity {
                         break;
                  //   case 1 :
                    //     new PhoneFragment();
-               //     case 2 :
-                  //      new CommentFragment();
-                   //     break;
+                   case 1 :
+                     new CommentFragment();
+                    break;
                 }
             }
 
